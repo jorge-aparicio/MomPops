@@ -3,4 +3,6 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="navbar">Navbar</string>
+    <string name="restaurant"><u> Mom and Pop </u></string>
 </resources>
