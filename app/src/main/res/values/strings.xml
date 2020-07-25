@@ -4,5 +4,20 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="navbar">Navbar</string>
-    <string name="restaurant"><u> Mom and Pop </u></string>
+    <string name="restaurant"><u> Mom and Pops Best Restaurant Here </u></string>
+    <string name="food_type">Food Type </string>
+    <string name="price_range">Price Range </string>
+    <string name="rest_address">Restaurant Address </string>
+    <string name="phone_number">Phone # </string>
+    <string name="delivery">Delivery: Yes </string>
+    <string name="pickup">Pickup: Yes </string>
+    <string name="images">Images</string>
+    <string name="view_images">View More</string>
+    <string name="menu">Menu</string>
+    <string-array name="categories">
+        <item> Select Category </item>
+        <item> Burritos </item>
+        <item> Tacos </item>
+        <item> Salads </item>
+    </string-array>
 </resources>
