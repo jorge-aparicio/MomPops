@@ -14,15 +14,12 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity {
-    private Button button;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
-        button = (Button) findViewById(R.id.button);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -37,6 +34,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToMenuPage(View v) {
         Intent intent = new Intent(this, ClickedRestaurantActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToEditRestaurantPage(View v) {
+        Intent intent = new Intent(this, EditRestaurantMenuActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToViewCart(View v) {
+        Intent intent = new Intent(this, ViewCartActivity.class);
         startActivity(intent);
     }
 }

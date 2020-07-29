@@ -14,8 +14,9 @@
     <string name="images">Images</string>
     <string name="view_images">View More</string>
     <string name="menu">Menu</string>
+    <string name="cart">View Cart</string>
     <string-array name="categories">
-        <item> Select Category </item>
+        <item> All Categories </item>
         <item> Burritos </item>
         <item> Tacos </item>
         <item> Salads </item>

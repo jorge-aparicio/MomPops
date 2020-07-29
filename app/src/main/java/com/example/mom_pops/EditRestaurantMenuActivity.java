@@ -4,12 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class ClickedRestaurantActivity extends AppCompatActivity {
+public class EditRestaurantMenuActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
-        setContentView(R.layout.activity_clicked_restaurant);
+        setContentView(R.layout.activity_edit_restaurant_menu);
     }
 }
