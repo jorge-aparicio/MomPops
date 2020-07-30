@@ -97,6 +97,7 @@
         android:layout_marginTop="32dp"
         android:text="name_widget"
         android:textAlignment="center"
+        android:background="#00FF00"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintEnd_toStartOf="@+id/textView7"
         app:layout_constraintHorizontal_bias="1.0"
