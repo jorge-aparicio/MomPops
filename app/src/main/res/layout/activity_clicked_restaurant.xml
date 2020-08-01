@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -210,12 +210,29 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_margin="25dp"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                >
+            <com.example.mom_pops.MenuItem
+                android:id="@+id/item1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                custom:item_category="Burgers"
+                custom:item_description="This is a cheeseburger."
+                custom:item_name="Cheeseburger"
+                custom:item_price="$4.99" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.example.mom_pops.MenuItem
+                android:id="@+id/item2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                custom:item_name="2 Carne Asada Tacos"
+                custom:item_price="$5.99"
+                android:layout_marginTop="280dp"
+                custom:item_category="Tacos"
+                custom:item_description="Comes with two carne asada tacos." />
+            </FrameLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

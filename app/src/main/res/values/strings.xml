@@ -15,6 +15,13 @@
     <string name="view_images">View More</string>
     <string name="menu">Menu</string>
     <string name="cart">View Cart</string>
+    <string name="item_name">Item Name</string>
+    <string name="item_price">Item Price</string>
+    <string name="item_description">This is the description of the item. </string>
+    <string name="item_category"> Item Category</string>
+    <string name="view_description">View Description</string>
+    <string name="hide_description">Hide Description</string>
+
     <string-array name="categories">
         <item> All Categories </item>
         <item> Burritos </item>
