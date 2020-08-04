@@ -5,6 +5,7 @@
         <attr name="item_price" format="string" />
         <attr name="item_category" format="string" />
         <attr name="item_description" format="string" />
+        <attr name="selected" format="boolean" />
         <attr name="render_x" format="boolean" />
     </declare-styleable>
 </resources>

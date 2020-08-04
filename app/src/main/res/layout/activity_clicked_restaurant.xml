@@ -231,7 +231,7 @@
                 custom:item_price="$5.99"
                 android:layout_marginTop="280dp"
                 custom:item_category="Tacos"
-                custom:item_description="Comes with two carne asada tacos." />
+                custom:item_description="Comes with two carne asada tacos. Meat delivered straight from the Himalayas. These are nothing like the tacos you've tried before, we promise your satisfaction or your money back." />
             </FrameLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
