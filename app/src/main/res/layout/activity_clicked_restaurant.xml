@@ -218,9 +218,9 @@
                 android:id="@+id/item1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                custom:item_category="Burgers"
                 custom:item_description="This is a cheeseburger."
                 custom:item_name="Cheeseburger"
+                custom:item_calories="1000 calories"
                 custom:item_price="$4.99" />
 
             <com.example.mom_pops.MenuItem
@@ -230,7 +230,7 @@
                 custom:item_name="2 Carne Asada Tacos"
                 custom:item_price="$5.99"
                 android:layout_marginTop="280dp"
-                custom:item_category="Tacos"
+                custom:item_calories="1000 calories"
                 custom:item_description="Comes with two carne asada tacos. Meat delivered straight from the Himalayas. These are nothing like the tacos you've tried before, we promise your satisfaction or your money back." />
             </FrameLayout>
         </LinearLayout>

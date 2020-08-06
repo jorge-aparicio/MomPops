@@ -26,10 +26,9 @@ public class MenuItem extends ConstraintLayout {
     private TextView item_price_text_view;
     private TextView item_category_text_view;
     private TextView item_description_text_view;
-    private TextView description;
+    private TextView item_calories_text_view;
     private ImageView starIcon;
     private ImageView cartIcon;
-    private Button description_toggler;
 
     public MenuItem(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -44,11 +43,11 @@ public class MenuItem extends ConstraintLayout {
 
         item_name_text_view = sol.findViewById(R.id.textView4);
         item_price_text_view = sol.findViewById(R.id.textView16);
-        item_category_text_view = sol.findViewById(R.id.textView7);
-        item_description_text_view = sol.findViewById(R.id.textView17);
+        item_description_text_view = sol.findViewById(R.id.textView8);
+        item_calories_text_view = sol.findViewById(R.id.textView3);
 
         setMenuItem(attributes.getString(R.styleable.menuItem_item_name), attributes.getString(R.styleable.menuItem_item_price),
-                attributes.getString(R.styleable.menuItem_item_category), attributes.getString(R.styleable.menuItem_item_description));
+                attributes.getString(R.styleable.menuItem_item_description), attributes.getString(R.styleable.menuItem_item_calories));
         attributes.recycle();
 
         // setting on click listener for star icon
@@ -91,20 +90,6 @@ public class MenuItem extends ConstraintLayout {
             }
         });
 
-        description_toggler = sol.findViewById(R.id.button5);
-        description = sol.findViewById(R.id.textView17);
-        description_toggler.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (description_toggler.getText().equals("View Description")) {
-                    description.setVisibility(View.VISIBLE);
-                    description_toggler.setText("Hide Description");
-                } else {
-                    description.setVisibility(View.INVISIBLE);
-                    description_toggler.setText("View Description");
-                }
-            }
-        });
     }
 
     public boolean getStarBoolean() {
@@ -115,11 +100,11 @@ public class MenuItem extends ConstraintLayout {
         return cartIsSelected;
     }
 
-    public void setMenuItem(String name, String price, String category, String description) {
+    public void setMenuItem(String name, String price, String description, String calories) {
         item_name_text_view.setText(name);
         item_price_text_view.setText(price);
-        item_category_text_view.setText(category);
         item_description_text_view.setText(description);
+        item_calories_text_view.setText(calories);
     }
 
     public void setMenuItemName(String name) {
