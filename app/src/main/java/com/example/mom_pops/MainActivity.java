@@ -3,7 +3,9 @@ package com.example.mom_pops;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -28,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
     private RestaurantsAdapter restaurant_adapter;
     private List<Restaurant> restaurant_list = new ArrayList<>();
 
+    private static String DB_NAME = "databases/mompop.sql";
+    private ListView listView;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +47,19 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+        
+        //database load
+        this.listView = (ListView) findViewById(R.id.listView);
+        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
+        databaseAccess.open();
+        List<String> quotes = databaseAccess.getQuotes();
+        databaseAccess.close();
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, quotes);
+        this.listView.setAdapter(adapter);
+
+
+
 
         //load restaurant lister
         recycle_view_restaurants = (RecyclerView) findViewById(R.id.recycle_restaurant_list);
@@ -49,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         recycle_view_restaurants.setLayoutManager(restaurant_layout_manager);
         recycle_view_restaurants.setItemAnimator(new DefaultItemAnimator());
         recycle_view_restaurants.setAdapter(restaurant_adapter);
+
         addRestaurantData();
 
         //navigate from home page to spin the wheel page
@@ -65,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
      * Opens spin the wheel page
      */
     public void open_spin_the_wheel() {
-        Intent intent = new Intent(this, SpinTheWheel.class);
+        Intent intent = new Intent(this, MyFavorites.class);
         startActivity(intent);
     }
 
@@ -73,22 +93,22 @@ public class MainActivity extends AppCompatActivity {
      * Adds data to restaurant list views
      */
     public void addRestaurantData() {
-        Restaurant restaurant = new Restaurant("McDonalds", "Fast Food", "$", "92837163", "213B Baker Street, London", "7 miles away", R.drawable.ic_dashboard_black_24dp);
-        restaurant_list.add(restaurant);
-
-        restaurant = new Restaurant("King", "Fast", "$$$", "12353434", "213B Baker Forward, London", "10 miles away", R.drawable.ic_launcher_background);
-        restaurant_list.add(restaurant);
-
-        restaurant = new Restaurant("King", "Fast", "$$$", "12353434", "213B Baker Forward, London", "10 miles away", R.drawable.ic_launcher_background);
-        restaurant_list.add(restaurant);
-
-        restaurant = new Restaurant("King", "Fast", "$$$", "12353434", "213B Baker Forward, London", "10 miles away", R.drawable.ic_launcher_background);
-        restaurant_list.add(restaurant);
-
-        restaurant = new Restaurant("King", "Fast", "$$$", "12353434", "213B Baker Forward, London", "10 miles away", R.drawable.ic_launcher_background);
-        restaurant_list.add(restaurant);
-
-        restaurant = new Restaurant("King", "Fast", "$$$", "12353434", "213B Baker Forward, London", "10 miles away", R.drawable.ic_launcher_background);
-        restaurant_list.add(restaurant);
+//        Restaurant restaurant = new Restaurant("McDonalds", "Fast Food", "$", "92837163", "213B Baker Street, London", "7 miles away", R.drawable.ic_launcher_background);
+//        restaurant_list.add(restaurant);
+//
+//        restaurant = new Restaurant("King", "Fast", "$$$", "12353434", "213B Baker Forward, London", "10 miles away", R.drawable.ic_launcher_background);
+//        restaurant_list.add(restaurant);
+//
+//        restaurant = new Restaurant("King", "Fast", "$$$", "12353434", "213B Baker Forward, London", "10 miles away", R.drawable.ic_launcher_background);
+//        restaurant_list.add(restaurant);
+//
+//        restaurant = new Restaurant("King", "Fast", "$$$", "12353434", "213B Baker Forward, London", "10 miles away", R.drawable.ic_launcher_background);
+//        restaurant_list.add(restaurant);
+//
+//        restaurant = new Restaurant("King", "Fast", "$$$", "12353434", "213B Baker Forward, London", "10 miles away", R.drawable.ic_launcher_background);
+//        restaurant_list.add(restaurant);
+//
+//        restaurant = new Restaurant("King", "Fast", "$$$", "12353434", "213B Baker Forward, London", "10 miles away", R.drawable.ic_launcher_background);
+//        restaurant_list.add(restaurant);
     }
 }
