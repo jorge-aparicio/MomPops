@@ -2,6 +2,7 @@ package com.example.mom_pops;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 
@@ -24,14 +26,20 @@ public class MenuItem extends ConstraintLayout {
 
     private TextView item_name_text_view;
     private TextView item_price_text_view;
-    private TextView item_category_text_view;
     private TextView item_description_text_view;
     private TextView item_calories_text_view;
     private ImageView starIcon;
     private ImageView cartIcon;
 
+    private ConstraintLayout topLayout;
+
+    private Activity activity;
+
     public MenuItem(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+
+        // setting the activity
+        activity = (Activity) getContext();
 
         // get attributes assigned to menu item in xml
         TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.menuItem, 0, 0);
@@ -56,7 +64,7 @@ public class MenuItem extends ConstraintLayout {
         starIcon.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Context context = ((Activity)getContext()).getApplicationContext();
+                Context context = activity.getApplicationContext();
                 boolean isSelected = getStarBoolean();
                 if (isSelected) {
                     starIcon.setImageResource(R.mipmap.unselected_star);
@@ -75,7 +83,7 @@ public class MenuItem extends ConstraintLayout {
         cartIcon.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Context context = ((Activity)getContext()).getApplicationContext();
+                Context context = activity.getApplicationContext();
                 boolean isSelected = getCartBoolean();
                 if (isSelected) {
                     cartIcon.setImageResource(R.mipmap.unselected_cart);
@@ -90,6 +98,13 @@ public class MenuItem extends ConstraintLayout {
             }
         });
 
+        topLayout = sol.findViewById(R.id.topLayout);
+        topLayout.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                activity.startActivity(new Intent(activity, MenuItemPop.class));
+            }
+        });
     }
 
     public boolean getStarBoolean() {
@@ -113,10 +128,6 @@ public class MenuItem extends ConstraintLayout {
 
     public void setMenuItemPrice(String price) {
         item_price_text_view.setText(price);
-    }
-
-    public void setMenuItemCategory(String category) {
-        item_category_text_view.setText(category);
     }
 
     public void setMenuItemDescription(String description) {
