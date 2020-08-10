@@ -22,7 +22,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 public class MenuItem extends ConstraintLayout {
     private boolean starIsSelected;
     private boolean cartIsSelected;
-    private boolean description_visibility;
 
     private TextView item_name_text_view;
     private TextView item_price_text_view;
@@ -30,6 +29,11 @@ public class MenuItem extends ConstraintLayout {
     private TextView item_calories_text_view;
     private ImageView starIcon;
     private ImageView cartIcon;
+
+    private String itemName;
+    private String itemPrice;
+    private String itemCal;
+    private String itemDescription;
 
     private ConstraintLayout topLayout;
 
@@ -54,9 +58,13 @@ public class MenuItem extends ConstraintLayout {
         item_description_text_view = sol.findViewById(R.id.textView8);
         item_calories_text_view = sol.findViewById(R.id.textView3);
 
-        setMenuItem(attributes.getString(R.styleable.menuItem_item_name), attributes.getString(R.styleable.menuItem_item_price),
-                attributes.getString(R.styleable.menuItem_item_description), attributes.getString(R.styleable.menuItem_item_calories));
+        itemName = attributes.getString(R.styleable.menuItem_item_name);
+        itemPrice = attributes.getString(R.styleable.menuItem_item_price);
+        itemCal = attributes.getString(R.styleable.menuItem_item_calories);
+        itemDescription = attributes.getString(R.styleable.menuItem_item_description);
+
         attributes.recycle();
+        setMenuItem(itemName, itemPrice, itemDescription, itemCal);
 
         // setting on click listener for star icon
         // behavior: updates icon appearance and favorites/unfavorites menu item depending on current status
@@ -102,9 +110,20 @@ public class MenuItem extends ConstraintLayout {
         topLayout.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                activity.startActivity(new Intent(activity, MenuItemPop.class));
+                Intent intent = new Intent(activity, MenuItemPop.class);
+                intent.putExtra("itemName", itemName);
+                intent.putExtra("itemPrice", itemPrice);
+                intent.putExtra("itemCal", itemCal);
+                intent.putExtra("itemDescription", itemDescription);
+                intent.putExtra("starIcon", getStarBoolean());
+                intent.putExtra("cartIcon", getCartBoolean());
+                activity.startActivityForResult(intent, 1);
             }
         });
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        System.out.println("here");
     }
 
     public boolean getStarBoolean() {

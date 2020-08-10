@@ -114,7 +114,7 @@
 
 
             <ImageView
-                android:id="@+id/imageView7"
+                android:id="@+id/cartIcon"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:layout_margin="20dp"
