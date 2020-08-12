@@ -1,8 +1,10 @@
 package com.example.mom_pops;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -17,6 +19,11 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 
 public class MenuItem extends ConstraintLayout {
@@ -36,6 +43,7 @@ public class MenuItem extends ConstraintLayout {
     private String itemDescription;
 
     private ConstraintLayout topLayout;
+    private View sol;
 
     private Activity activity;
 
@@ -48,10 +56,7 @@ public class MenuItem extends ConstraintLayout {
         // get attributes assigned to menu item in xml
         TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.menuItem, 0, 0);
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View sol = inflater.inflate(R.layout.menu_item, this, true);
-
-        // TODO add a method to get current value of star and cart, maybe do it in activity?
-        // TODO set up getters and setters
+        sol = inflater.inflate(R.layout.menu_item, this, true);
 
         item_name_text_view = sol.findViewById(R.id.textView4);
         item_price_text_view = sol.findViewById(R.id.textView16);
@@ -117,13 +122,9 @@ public class MenuItem extends ConstraintLayout {
                 intent.putExtra("itemDescription", itemDescription);
                 intent.putExtra("starIcon", getStarBoolean());
                 intent.putExtra("cartIcon", getCartBoolean());
-                activity.startActivityForResult(intent, 1);
+                activity.startActivity(intent);
             }
         });
-    }
-
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        System.out.println("here");
     }
 
     public boolean getStarBoolean() {
@@ -160,5 +161,4 @@ public class MenuItem extends ConstraintLayout {
     public void setCartBoolean(boolean update) {
         cartIsSelected = update;
     }
-
 }

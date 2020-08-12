@@ -101,27 +101,6 @@
                 custom:layout_constraintEnd_toEndOf="parent"
                 custom:layout_constraintStart_toStartOf="parent"
                 custom:layout_constraintTop_toBottomOf="@id/itemDescription" />
-
-            <ImageView
-                android:id="@+id/starIcon"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_marginStart="20dp"
-                android:layout_weight="1"
-                android:src="@mipmap/unselected_star"
-                custom:layout_constraintStart_toEndOf="@id/closeButton"
-                custom:layout_constraintTop_toBottomOf="@id/itemDescription" />
-
-
-            <ImageView
-                android:id="@+id/cartIcon"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_margin="20dp"
-                android:layout_weight="1"
-                android:src="@mipmap/unselected_cart"
-                custom:layout_constraintStart_toEndOf="@id/starIcon"
-                custom:layout_constraintTop_toBottomOf="@id/itemDescription" />
         </LinearLayout>
 
 
