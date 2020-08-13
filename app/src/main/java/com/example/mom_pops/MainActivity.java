@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
     private RestaurantsAdapter restaurant_adapter;
     private List<Restaurant> restaurant_list = new ArrayList<>();
 
-    private static String DB_NAME = "databases/mompop.sql";
     private ListView listView;
 
 
@@ -80,10 +79,6 @@ public class MainActivity extends AppCompatActivity {
                 null
         );
 
-//        System.out.println(cursor.moveToFirst());
-//        System.out.println(cursor.getString(0));
-
-
         //load restaurant lister
         recycle_view_restaurants = (RecyclerView) findViewById(R.id.recycle_restaurant_list);
         restaurant_adapter = new RestaurantsAdapter(restaurant_list);
@@ -123,21 +118,5 @@ public class MainActivity extends AppCompatActivity {
         cursor.move(1);
         restaurant = new Restaurant(cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(7), cursor.getString(0), "7 miles away", R.drawable.ic_launcher_background);
         restaurant_list.add(restaurant);
-
-//
-//        restaurant = new Restaurant("King", "Fast", "$$$", "12353434", "213B Baker Forward, London", "10 miles away", R.drawable.ic_launcher_background);
-//        restaurant_list.add(restaurant);
-//
-//        restaurant = new Restaurant("King", "Fast", "$$$", "12353434", "213B Baker Forward, London", "10 miles away", R.drawable.ic_launcher_background);
-//        restaurant_list.add(restaurant);
-//
-//        restaurant = new Restaurant("King", "Fast", "$$$", "12353434", "213B Baker Forward, London", "10 miles away", R.drawable.ic_launcher_background);
-//        restaurant_list.add(restaurant);
-//
-//        restaurant = new Restaurant("King", "Fast", "$$$", "12353434", "213B Baker Forward, London", "10 miles away", R.drawable.ic_launcher_background);
-//        restaurant_list.add(restaurant);
-//
-//        restaurant = new Restaurant("King", "Fast", "$$$", "12353434", "213B Baker Forward, London", "10 miles away", R.drawable.ic_launcher_background);
-//        restaurant_list.add(restaurant);
     }
 }
