@@ -3,4 +3,13 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="spin_the_wheel">Spin the Wheel</string>
+    <string name="restaurant_name">Restaurant Name</string>
+    <string name="food_type">Food Type</string>
+    <string name="price_range">Price Range</string>
+    <string name="address">Address</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="view_menu">View Menu</string>
+    <string name="miles_away">Miles Away</string>
+    <string name="my_favorites">My Favorites</string>
 </resources>
