@@ -1,6 +1,9 @@
 package com.example.mom_pops;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -18,10 +21,15 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+
+    private DatabaseHelper mDBHelper;
+    private SQLiteDatabase mDb;
+    private Cursor cursor;
 
     private Button spin_the_wheel_button;
 
@@ -47,18 +55,33 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-        
-        //database load
-        this.listView = (ListView) findViewById(R.id.listView);
-        DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
-        databaseAccess.open();
-        List<String> quotes = databaseAccess.getQuotes();
-        databaseAccess.close();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, quotes);
-        this.listView.setAdapter(adapter);
+        mDBHelper = new DatabaseHelper(this);
 
+        try {
+            mDBHelper.updateDataBase();
+        } catch (IOException mIOException) {
+            throw new Error("UnableToUpdateDatabase");
+        }
 
+        try {
+            mDb = mDBHelper.getWritableDatabase();
+        } catch (SQLException mSQLException) {
+            throw mSQLException;
+        }
+
+        cursor = mDb.query(
+                "Restaurants",
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+
+//        System.out.println(cursor.moveToFirst());
+//        System.out.println(cursor.getString(0));
 
 
         //load restaurant lister
@@ -93,8 +116,14 @@ public class MainActivity extends AppCompatActivity {
      * Adds data to restaurant list views
      */
     public void addRestaurantData() {
-//        Restaurant restaurant = new Restaurant("McDonalds", "Fast Food", "$", "92837163", "213B Baker Street, London", "7 miles away", R.drawable.ic_launcher_background);
-//        restaurant_list.add(restaurant);
+        cursor.moveToFirst();
+        Restaurant restaurant = new Restaurant(cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(7), cursor.getString(0), "7 miles away", R.drawable.ic_launcher_background);
+        restaurant_list.add(restaurant);
+
+        cursor.move(1);
+        restaurant = new Restaurant(cursor.getString(2), cursor.getString(3), cursor.getString(4), cursor.getString(7), cursor.getString(0), "7 miles away", R.drawable.ic_launcher_background);
+        restaurant_list.add(restaurant);
+
 //
 //        restaurant = new Restaurant("King", "Fast", "$$$", "12353434", "213B Baker Forward, London", "10 miles away", R.drawable.ic_launcher_background);
 //        restaurant_list.add(restaurant);
