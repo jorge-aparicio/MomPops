@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:text="@string/item_price"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 tools:layout_editor_absoluteX="103dp"
                 tools:layout_editor_absoluteY="291dp" />
 
@@ -67,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="@string/item_calories"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 tools:layout_editor_absoluteX="203dp"
                 tools:layout_editor_absoluteY="291dp" />
 
@@ -81,7 +81,7 @@
             android:gravity="center"
             android:padding="10dp"
             android:text="@string/item_description"
-            android:textSize="18sp"
+            android:textSize="15sp"
             custom:layout_constraintStart_toStartOf="parent"
             custom:layout_constraintTop_toBottomOf="@id/priceCalLayout" />
 
@@ -116,7 +116,7 @@
             android:paddingLeft="12dp"
             custom:layout_constraintTop_toBottomOf="@id/itemPic"
             custom:layout_constraintStart_toStartOf="parent"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:gravity="center"
             android:text="@string/item_restaurant"
             tools:layout_editor_absoluteX="0dp"
