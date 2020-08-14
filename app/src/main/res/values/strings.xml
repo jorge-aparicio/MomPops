@@ -24,7 +24,7 @@
     <string name="view_description">View Description</string>
     <string name="hide_description">Hide Description</string>
     <string name="close_popup">Close</string>
-    <string name="cart_total">Cart Total:</string>
+    <string name="cart_total">Cart Total: $0.00</string>
 
     <string-array name="categories">
         <item> All Categories </item>

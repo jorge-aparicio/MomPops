@@ -76,8 +76,8 @@
 
         <ImageView
             android:id="@+id/x_icon"
-            android:layout_width="42dp"
-            android:layout_height="28dp"
+            android:layout_width="39dp"
+            android:layout_height="25dp"
             android:layout_marginTop="8dp"
             android:layout_marginRight="8dp"
             android:src="@drawable/x_icon"
