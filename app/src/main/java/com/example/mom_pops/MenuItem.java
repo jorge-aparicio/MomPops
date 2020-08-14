@@ -41,6 +41,7 @@ public class MenuItem extends ConstraintLayout {
     private String itemPrice;
     private String itemCal;
     private String itemDescription;
+    private String itemRestaurant;
 
     private ConstraintLayout topLayout;
     private View sol;
@@ -67,6 +68,7 @@ public class MenuItem extends ConstraintLayout {
         itemPrice = attributes.getString(R.styleable.menuItem_item_price);
         itemCal = attributes.getString(R.styleable.menuItem_item_calories);
         itemDescription = attributes.getString(R.styleable.menuItem_item_description);
+        itemRestaurant = attributes.getString(R.styleable.menuItem_item_restaurant);
 
         attributes.recycle();
         setMenuItem(itemName, itemPrice, itemDescription, itemCal);
@@ -122,6 +124,7 @@ public class MenuItem extends ConstraintLayout {
                 intent.putExtra("itemDescription", itemDescription);
                 intent.putExtra("starIcon", getStarBoolean());
                 intent.putExtra("cartIcon", getCartBoolean());
+                intent.putExtra("itemRestaurant", itemRestaurant);
                 activity.startActivity(intent);
             }
         });

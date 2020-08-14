@@ -221,6 +221,7 @@
                 custom:item_description="This is a cheeseburger."
                 custom:item_name="Cheeseburger"
                 custom:item_calories="1000 calories"
+                custom:item_restaurant="Mom and Pop's Best Restaurant"
                 custom:item_price="$4.99" />
 
             <com.example.mom_pops.MenuItem
@@ -231,6 +232,7 @@
                 custom:item_price="$5.99"
                 android:layout_marginTop="280dp"
                 custom:item_calories="1000 calories"
+                custom:item_restaurant="Mom and Pop's Best Restaurant"
                 custom:item_description="Comes with two carne asada tacos. Meat delivered straight from the Himalayas. These are nothing like the tacos you've tried before, we promise your satisfaction or your money back." />
             </FrameLayout>
         </LinearLayout>

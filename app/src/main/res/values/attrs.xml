@@ -6,7 +6,6 @@
         <attr name="item_category" format="string" />
         <attr name="item_description" format="string" />
         <attr name="item_calories" format="string" />
-        <attr name="selected" format="boolean" />
-        <attr name="render_x" format="boolean" />
+        <attr name="item_restaurant" format="string" />
     </declare-styleable>
 </resources>

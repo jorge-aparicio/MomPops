@@ -4,17 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     tools:context=".ViewCartActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/viewCartTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="33dp"
         android:gravity="center"
-        android:text="@string/cart"
+        android:text="@string/cart_title"
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/viewCartTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:text="@string/cart_total"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewCartTitle" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="75dp"
+        >
+        <com.example.mom_pops.CartItem
+            android:id="@+id/item1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            custom:item_description="This is a cheeseburger."
+            custom:item_name="Cheeseburger"
+            custom:item_calories="1000 calories"
+            custom:item_restaurant="Mom and Pop's Best Restaurant"
+            custom:item_price="$4.99" />
+
+        <com.example.mom_pops.CartItem
+            android:id="@+id/item2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            custom:item_name="2 Carne Asada Tacos"
+            custom:item_price="$5.99"
+            android:layout_marginTop="280dp"
+            custom:item_calories="1000 calories"
+            custom:item_restaurant="Mom and Pop's Best Restaurant"
+            custom:item_description="Comes with two carne asada tacos. Meat delivered straight from the Himalayas. These are nothing like the tacos you've tried before, we promise your satisfaction or your money back." />
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

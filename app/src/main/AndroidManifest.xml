@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewCartActivity"></activity>
+        <activity android:name=".CartItemPop"></activity>
+        <activity android:name=".ViewCartActivity" />
         <activity android:name=".EditRestaurantMenuActivity" />
         <activity android:name=".ClickedRestaurantActivity" />
         <activity
@@ -21,7 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MenuItemPop"
+        <activity
+            android:name=".MenuItemPop"
             android:theme="@style/AppTheme.PopupTheme" />
     </application>
 

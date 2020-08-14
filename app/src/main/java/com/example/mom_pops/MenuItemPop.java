@@ -19,12 +19,14 @@ public class MenuItemPop extends Activity {
     private String itemCal;
     private String itemPrice;
     private String itemDescription;
+    private String itemRestaurant;
     private ImageView itemImgPath;
 
     private TextView itemName_textView;
     private TextView itemPrice_textView;
     private TextView itemCal_textView;
     private TextView itemDescription_textView;
+    private TextView itemRestaurant_textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,7 @@ public class MenuItemPop extends Activity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout((int) (width * .8), (int) (height * .8));
+        getWindow().setLayout((int) (width * .85), (int) (height * .85));
 
         // get information on menu item
         Intent intent = getIntent();
@@ -46,18 +48,21 @@ public class MenuItemPop extends Activity {
         itemPrice = intent.getStringExtra("itemPrice");
         itemCal = intent.getStringExtra("itemCal");
         itemDescription = intent.getStringExtra("itemDescription");
+        itemRestaurant = intent.getStringExtra("itemRestaurant");
 
         // setting info to menu popup
         itemName_textView = findViewById(R.id.itemName);
         itemCal_textView = findViewById(R.id.itemCalories);
         itemPrice_textView = findViewById(R.id.itemPrice);
         itemDescription_textView = findViewById(R.id.itemDescription);
+        itemRestaurant_textView = findViewById(R.id.itemRestaurant);
 
 
         itemName_textView.setText(itemName);
         itemPrice_textView.setText(itemPrice);
         itemCal_textView.setText(itemCal);
         itemDescription_textView.setText(itemDescription);
+        itemRestaurant_textView.setText(itemRestaurant);
 
         Button closeButton = findViewById(R.id.closeButton);
         closeButton.setOnClickListener(new View.OnClickListener() {
