@@ -17,7 +17,7 @@
     <string name="cart_title">View Cart</string>
     <string name="item_name">Item Name</string>
     <string name="item_price">Item Price</string>
-    <string name="item_description">This is the descripiton of the item.</string>
+    <string name="item_description">This is the description of the item.</string>
     <string name="item_category"> Item Category</string>
     <string name="item_calories"> Item Calories</string>
     <string name="item_restaurant">Item Restaurant</string>
@@ -25,6 +25,11 @@
     <string name="hide_description">Hide Description</string>
     <string name="close_popup">Close</string>
     <string name="cart_total">Cart Total: $0.00</string>
+    <string name="clear_cart">Clear Cart</string>
+    <string name="confirmation_text">Confirmation Text</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+
 
     <string-array name="categories">
         <item> All Categories </item>

@@ -1,29 +1,18 @@
 package com.example.mom_pops;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewParent;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 
 public class MenuItem extends ConstraintLayout {
@@ -117,7 +106,8 @@ public class MenuItem extends ConstraintLayout {
         topLayout.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity, MenuItemPop.class);
+                Intent intent = new Intent(activity, Popup.class);
+                intent.putExtra("popupType", "item");
                 intent.putExtra("itemName", itemName);
                 intent.putExtra("itemPrice", itemPrice);
                 intent.putExtra("itemCal", itemCal);

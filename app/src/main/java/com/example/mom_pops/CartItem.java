@@ -69,10 +69,12 @@ public class CartItem extends ConstraintLayout {
         });
 
         // onClick listener for cart item, displays popup with enlarged/expanded information
-        cartItem_xml.setOnClickListener(new OnClickListener() {
+        ConstraintLayout topLayout = cartItem_xml.findViewById(R.id.topLayout);
+        topLayout.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity, MenuItemPop.class);
+                Intent intent = new Intent(activity, Popup.class);
+                intent.putExtra("popupType", "item");
                 intent.putExtra("itemName", item_name);
                 intent.putExtra("itemDescription", item_description);
                 intent.putExtra("itemCal", item_calories);

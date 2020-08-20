@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto">
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:custom="http://schemas.android.com/apk/res-auto"
     tools:context=".ViewCartActivity">
 
     <TextView
@@ -15,9 +18,9 @@
         android:gravity="center"
         android:text="@string/cart_title"
         android:textSize="28sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        custom:layout_constraintEnd_toEndOf="parent"
+        custom:layout_constraintStart_toStartOf="parent"
+        custom:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/viewCartTotal"
@@ -27,18 +30,22 @@
         android:gravity="center"
         android:text="@string/cart_total"
         android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/viewCartTitle" />
+        custom:layout_constraintEnd_toEndOf="parent"
+        custom:layout_constraintStart_toStartOf="parent"
+        custom:layout_constraintTop_toBottomOf="@id/viewCartTitle" />
+
     <FrameLayout
+        android:id="@+id/cartFrame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        custom:layout_constraintStart_toStartOf="parent"
+        custom:layout_constraintTop_toBottomOf="@id/viewCartTotal"
         android:layout_marginTop="75dp"
         >
         <com.example.mom_pops.CartItem
             android:id="@+id/item1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             custom:item_description="This is a cheeseburger."
             custom:item_name="Cheeseburger"
             custom:item_calories="1000 calories"
@@ -48,12 +55,26 @@
         <com.example.mom_pops.CartItem
             android:id="@+id/item2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             custom:item_name="2 Carne Asada Tacos"
             custom:item_price="$5.99"
             android:layout_marginTop="280dp"
             custom:item_calories="1000 calories"
             custom:item_restaurant="Mom and Pop's Best Restaurant"
             custom:item_description="Comes with two carne asada tacos. Meat delivered straight from the Himalayas. These are nothing like the tacos you've tried before, we promise your satisfaction or your money back." />
+
     </FrameLayout>
+
+    <Button
+        android:id="@+id/clearCart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cartFrame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/clear_cart"
+        tools:layout_editor_absoluteX="163dp"
+        tools:layout_editor_absoluteY="114dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
