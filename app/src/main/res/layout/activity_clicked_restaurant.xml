@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true"
+    android:overScrollMode="never"
+    tools:context=".ClickedRestaurantActivity"
+    android:layout_marginBottom="-800dp"
     xmlns:custom="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        tools:context=".ClickedRestaurantActivity">
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
             android:layout_width="416dp"
-            android:layout_height="205dp"
+            android:layout_height="wrap_content"
             android:background="#C0C0C0"
             app:layout_constraintBottom_toTopOf="@id/linearLayout2"
             app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +48,6 @@
                 android:layout_height="172dp"
                 android:layout_marginTop="1dp"
                 android:layout_marginEnd="40dp"
-                android:layout_marginBottom="1dp"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +59,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:layout_marginBottom="7dp"
                     android:text="@string/restaurant"
                     android:textAlignment="center"
                     android:textColor="#000000"
@@ -117,8 +123,7 @@
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
-            android:layout_height="205dp"
-            android:layout_marginBottom="260dp"
+            android:layout_height="wrap_content"
             android:background="#778899"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
@@ -203,7 +208,7 @@
         <LinearLayout
             android:id="@+id/linearLayout4"
             android:layout_width="match_parent"
-            android:layout_height="800dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -211,31 +216,13 @@
             app:layout_constraintTop_toBottomOf="@id/linearLayout3">
 
             <FrameLayout
+                android:id="@+id/itemContainer"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 >
-            <com.example.mom_pops.MenuItem
-                android:id="@+id/item1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                custom:item_description="This is a cheeseburger."
-                custom:item_name="Cheeseburger"
-                custom:item_calories="1000 calories"
-                custom:item_restaurant="Mom and Pop's Best Restaurant"
-                custom:item_price="$4.99" />
-
-            <com.example.mom_pops.MenuItem
-                android:id="@+id/item2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                custom:item_name="2 Carne Asada Tacos"
-                custom:item_price="$5.99"
-                android:layout_marginTop="280dp"
-                custom:item_calories="1000 calories"
-                custom:item_restaurant="Mom and Pop's Best Restaurant"
-                custom:item_description="Comes with two carne asada tacos. Meat delivered straight from the Himalayas. These are nothing like the tacos you've tried before, we promise your satisfaction or your money back." />
             </FrameLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
+</RelativeLayout>

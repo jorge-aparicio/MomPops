@@ -62,6 +62,9 @@ public class Popup extends Activity {
                 closeButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        Intent res = new Intent();
+                        setResult(1, res);
+
                         // close popup
                         finish();
                     }
