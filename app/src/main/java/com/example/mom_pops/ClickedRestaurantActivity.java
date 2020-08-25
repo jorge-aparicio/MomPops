@@ -21,10 +21,10 @@ public class ClickedRestaurantActivity extends AppCompatActivity {
         int counter = 0;
         int height = 0;
         while (counter < 100) {
-            MenuItem item = new MenuItem(getApplicationContext(), this, "Cheeseburger", "$3.99", "This is your basic Cheeseburger.", "1000 Calories", "Mom and Pops Best Restaurant");
+            MenuItem item = new MenuItem(getApplicationContext(), this, "Cheeseburger " + counter, "$3.99", "This is your basic Cheeseburger.", "1000 Calories", "Mom and Pops Best Restaurant");
             item.setPadding(height);
             container.addView(item);
-            height += 450;
+            height += 600;
             counter++;
         }
     }
