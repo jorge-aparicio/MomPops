@@ -17,16 +17,14 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.util.HashSet;
 
 
 public class MenuItem extends ConstraintLayout {
     private boolean starIsSelected;
     private boolean cartIsSelected;
+    private String itemString;
 
-    private TextView item_name_text_view;
-    private TextView item_price_text_view;
-    private TextView item_description_text_view;
-    private TextView item_calories_text_view;
     private ImageView starIcon;
     private ImageView cartIcon;
 
@@ -41,6 +39,7 @@ public class MenuItem extends ConstraintLayout {
 
     private Activity activity;
     private Context context;
+    private HashSet<String> cartSet;
 
     // won't allow menu item popup to show more than once
     private boolean popup_started;
@@ -51,11 +50,7 @@ public class MenuItem extends ConstraintLayout {
         context = contex;
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         sol = inflater.inflate(R.layout.menu_item, this);
-
-        item_name_text_view = sol.findViewById(R.id.textView4);
-        item_price_text_view = sol.findViewById(R.id.textView16);
-        item_description_text_view = sol.findViewById(R.id.textView8);
-        item_calories_text_view = sol.findViewById(R.id.textView3);
+        cartSet = ((App) activity.getApplication()).getCartSet();
 
         itemName = name;
         itemPrice = price;
@@ -63,6 +58,8 @@ public class MenuItem extends ConstraintLayout {
         itemCal = calories;
         itemRestaurant = restaurant;
 
+
+        itemString = itemName + "~" + itemPrice + "~" + itemDescription + "~" + itemCal + "~" + itemRestaurant;
         setMenuItem(itemName, itemPrice, itemDescription, itemCal);
 
         // setting on click listener for star icon
@@ -87,18 +84,27 @@ public class MenuItem extends ConstraintLayout {
         });
 
         cartIcon = sol.findViewById(R.id.imageView7);
+        if (cartSet.contains(itemString)) {
+            cartIcon.setImageResource(R.mipmap.selected_cart);
+            setCartBoolean(true);
+        }
+
         cartIcon.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 boolean isSelected = getCartBoolean();
                 if (isSelected) {
+                    cartSet.remove(itemString);
                     cartIcon.setImageResource(R.mipmap.unselected_cart);
                     Toast.makeText(context, "Removing item from cart...", Toast.LENGTH_SHORT).show();
                 } else {
                     cartIcon.setImageResource(R.mipmap.selected_cart);
-                    addCartItemToInternalStorage(itemName + "~" + itemPrice
-                        + "~" + itemDescription + "~" + itemCal + "~" + itemRestaurant + "\n");
+                    addCartItemToInternalStorage(itemString);
+                    ((App) activity.getApplication()).getCartSet().add(itemString);
+                    Toast.makeText(context, "Success!", Toast.LENGTH_SHORT).show();
                 }
+
+                setCartBoolean(!isSelected);
             }
         });
 
@@ -109,7 +115,7 @@ public class MenuItem extends ConstraintLayout {
                 Intent intent = new Intent(activity, Popup.class);
                 intent.putExtra("popupType", "item");
                 intent.putExtra("itemName", itemName);
-                intent.putExtra("itemPrice", itemPrice);
+                intent.putExtra("itemPrice", "$" + itemPrice);
                 intent.putExtra("itemCal", itemCal);
                 intent.putExtra("itemDescription", itemDescription);
                 intent.putExtra("starIcon", getStarBoolean());
@@ -137,7 +143,7 @@ public class MenuItem extends ConstraintLayout {
 
         try {
             FileWriter fw = new FileWriter(file, true);
-            fw.write(body);
+            fw.write(body + "\n");
             fw.flush();
             fw.close();
             setCartBoolean(!getCartBoolean());
@@ -157,22 +163,10 @@ public class MenuItem extends ConstraintLayout {
     }
 
     public void setMenuItem(String name, String price, String description, String calories) {
-        item_name_text_view.setText(name);
-        item_price_text_view.setText(price);
-        item_description_text_view.setText(description);
-        item_calories_text_view.setText(calories);
-    }
-
-    public void setMenuItemName(String name) {
-        item_name_text_view.setText(name);
-    }
-
-    public void setMenuItemPrice(String price) {
-        item_price_text_view.setText(price);
-    }
-
-    public void setMenuItemDescription(String description) {
-        item_description_text_view.setText(description);
+        ((TextView) sol.findViewById(R.id.textView4)).setText(name);
+        ((TextView) sol.findViewById(R.id.textView16)).setText("$" + price);
+        ((TextView) sol.findViewById(R.id.textView8)).setText(description);
+        ((TextView) sol.findViewById(R.id.textView3)).setText(calories);
     }
 
     public void setStarBoolean(boolean update) {

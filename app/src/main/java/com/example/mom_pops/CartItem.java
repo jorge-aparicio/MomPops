@@ -13,8 +13,11 @@ import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import org.w3c.dom.Text;
+
 public class CartItem extends ConstraintLayout {
     private Activity activity;
+    private Context context;
     private View cartItem_xml;
 
     private TextView item_name_text_view;
@@ -29,34 +32,21 @@ public class CartItem extends ConstraintLayout {
     private String item_calories;
     private String item_restaurant;
 
-    public CartItem(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    public CartItem(Context con, Activity act, String name, String price, String description, String calories, String restaurant) {
+        super(con);
+        activity = act;
+        context = con;
 
-        // getting the activity
-        activity = (Activity) getContext();
+        item_name = name;
+        item_price = price;
+        item_description = description;
+        item_calories = calories;
+        item_restaurant = restaurant;
 
-        // get attributes assigned to menu item in xml
-        TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.menuItem, 0, 0);
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        cartItem_xml = inflater.inflate(R.layout.cart_item, this, true);
+        cartItem_xml = inflater.inflate(R.layout.cart_item, this);
 
-        // find text views in cart item xml
-        item_name_text_view = cartItem_xml.findViewById(R.id.itemName);
-        item_price_text_view = cartItem_xml.findViewById(R.id.itemPrice);
-        item_description_text_view = cartItem_xml.findViewById(R.id.itemDescription);
-        item_calories_text_view = cartItem_xml.findViewById(R.id.itemCalories);
-        item_restaurant_text_view = cartItem_xml.findViewById(R.id.itemRestaurant);
-
-        // string values of cart item attributes
-        item_name = attributes.getString(R.styleable.menuItem_item_name);
-        item_price = attributes.getString(R.styleable.menuItem_item_price);
-        item_description = attributes.getString(R.styleable.menuItem_item_description);
-        item_calories = attributes.getString(R.styleable.menuItem_item_calories);
-        item_restaurant = attributes.getString(R.styleable.menuItem_item_restaurant);
-
-        // recycle attributes, apply text to xml
-        attributes.recycle();
-        setCartItem(item_name, item_price, item_description, item_calories, item_restaurant);
+        setCartItem(name, price, description, calories, restaurant);
 
         // onClick listener for x icon deletes cart item
         ImageView x_icon = cartItem_xml.findViewById(R.id.x_icon);
@@ -78,19 +68,18 @@ public class CartItem extends ConstraintLayout {
                 intent.putExtra("itemName", item_name);
                 intent.putExtra("itemDescription", item_description);
                 intent.putExtra("itemCal", item_calories);
-                intent.putExtra("itemPrice", item_price);
+                intent.putExtra("itemPrice", "$" + item_price);
                 intent.putExtra("itemRestaurant", item_restaurant);
                 activity.startActivity(intent);
             }
         });
-
     }
 
     public void setCartItem(String name, String price, String description, String calories, String restaurant) {
-        item_name_text_view.setText(name);
-        item_price_text_view.setText(price);
-        item_description_text_view.setText(description);
-        item_calories_text_view.setText(calories);
-        item_restaurant_text_view.setText(restaurant);
+        ((TextView) cartItem_xml.findViewById(R.id.itemName)).setText(name);
+        ((TextView) cartItem_xml.findViewById(R.id.itemPrice)).setText("$" + price);
+        ((TextView) cartItem_xml.findViewById(R.id.itemDescription)).setText(description);
+        ((TextView) cartItem_xml.findViewById(R.id.itemCalories)).setText(calories);
+        ((TextView) cartItem_xml.findViewById(R.id.itemRestaurant)).setText(restaurant);
     }
 }
