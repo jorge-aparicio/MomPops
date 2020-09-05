@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +19,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 
 import static java.security.AccessController.getContext;
 
@@ -26,7 +27,7 @@ public class ViewCartActivity extends AppCompatActivity {
     private Activity activity;
     private double total_price;
 
-    private HashSet<String> cartSet;
+    private LinkedHashSet<String> cartSet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,30 +39,14 @@ public class ViewCartActivity extends AppCompatActivity {
         cartSet = ((App) getApplication()).getCartSet();
 
         total_price = 0;
-        File file = new File(getFilesDir(), "CartItems.txt");
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String line;
-
-            FrameLayout layout = findViewById(R.id.cartFrame);
-            int height = 0;
-            while ( (line = br.readLine()) != null) {
-                String[] arr = line.split("~");
-                CartItem cartItem = new CartItem(getApplicationContext(), this, arr[0], arr[1],
-                        arr[2], arr[3], arr[4]);
-                cartItem.setPadding(0, height, 0, 0);
-                total_price += Double.parseDouble(arr[1]);
-                layout.addView(cartItem);
-                height += 450;
-            }
-
-            HashSet<String> cartSet = ((App) getApplication()).getCartSet();
-            for (String s : cartSet) {
-                System.out.println(s);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        LinearLayout layout = findViewById(R.id.cartFrame);
+        int index = 0;
+        for (String line : cartSet) {
+            String[] arr = line.split("~");
+            CartItem cartItem = new CartItem(getApplicationContext(), this, arr[0], arr[1],
+                    arr[2], arr[3], arr[4]);
+            total_price += Double.parseDouble(arr[1]);
+            layout.addView(cartItem.getItemXML(), index++);
         }
 
         if (total_price != 0)
@@ -71,7 +56,7 @@ public class ViewCartActivity extends AppCompatActivity {
         clearCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FrameLayout cartContainer = findViewById(R.id.cartFrame);
+                LinearLayout cartContainer = findViewById(R.id.cartFrame);
                 if (cartContainer.getChildCount() == 0) {
                     Toast.makeText(getApplicationContext(), "Cart is already empty.", Toast.LENGTH_SHORT).show();
                     return;
@@ -88,6 +73,9 @@ public class ViewCartActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (data == null)
+            return;
+
         super.onActivityResult(requestCode, resultCode, data);
 
         // clear cart request code
@@ -98,8 +86,7 @@ public class ViewCartActivity extends AppCompatActivity {
             if (result) {
                 Toast.makeText(getApplicationContext(), "Clearing Cart...", Toast.LENGTH_SHORT).show();
                 try {
-                    deleteFile("CartItems.txt");
-                    FrameLayout cartContainer = findViewById(R.id.cartFrame);
+                    LinearLayout cartContainer = findViewById(R.id.cartFrame);
                     cartContainer.removeAllViews();
                     cartSet.clear();
                     ((TextView) findViewById(R.id.viewCartTotal)).setText("Cart Total: $0.00");
@@ -110,6 +97,10 @@ public class ViewCartActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    public double getTotal() {
+        return total_price;
     }
 
 

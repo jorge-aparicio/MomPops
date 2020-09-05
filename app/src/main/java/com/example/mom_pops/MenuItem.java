@@ -18,6 +18,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 
 
 public class MenuItem extends ConstraintLayout {
@@ -39,7 +40,7 @@ public class MenuItem extends ConstraintLayout {
 
     private Activity activity;
     private Context context;
-    private HashSet<String> cartSet;
+    private LinkedHashSet<String> cartSet;
 
     // won't allow menu item popup to show more than once
     private boolean popup_started;
@@ -96,10 +97,12 @@ public class MenuItem extends ConstraintLayout {
                 if (isSelected) {
                     cartSet.remove(itemString);
                     cartIcon.setImageResource(R.mipmap.unselected_cart);
+                    System.out.println("here");
+                    Intent intent = new Intent(activity, RemoveCartItemService.class);
+                    activity.startService(intent);
                     Toast.makeText(context, "Removing item from cart...", Toast.LENGTH_SHORT).show();
                 } else {
                     cartIcon.setImageResource(R.mipmap.selected_cart);
-                    addCartItemToInternalStorage(itemString);
                     ((App) activity.getApplication()).getCartSet().add(itemString);
                     Toast.makeText(context, "Success!", Toast.LENGTH_SHORT).show();
                 }
@@ -125,33 +128,6 @@ public class MenuItem extends ConstraintLayout {
                 popup_started = true;
             }
         });
-    }
-
-    public void addCartItemToInternalStorage(String body) {
-        Toast.makeText(context, "Adding item to cart...", Toast.LENGTH_SHORT).show();
-        File file = new File(context.getFilesDir(), "CartItems.txt");
-
-        if (!file.exists()) {
-            try {
-                file.createNewFile();
-            } catch (Exception e) {
-                Toast.makeText(context, "Error...", Toast.LENGTH_SHORT).show();
-                e.printStackTrace();
-                return;
-            }
-        }
-
-        try {
-            FileWriter fw = new FileWriter(file, true);
-            fw.write(body + "\n");
-            fw.flush();
-            fw.close();
-            setCartBoolean(!getCartBoolean());
-            Toast.makeText(context, "Success!", Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            Toast.makeText(context, "Error...", Toast.LENGTH_SHORT).show();
-            e.printStackTrace();
-        }
     }
 
     public boolean getStarBoolean() {

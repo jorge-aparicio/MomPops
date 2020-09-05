@@ -12,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 
 public class ClickedRestaurantActivity extends AppCompatActivity {
     public boolean active;
@@ -21,23 +22,6 @@ public class ClickedRestaurantActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_clicked_restaurant);
-
-        // insert cart items into hashset if they haven't been inserted
-        if (!((App) getApplication()).getCartLoaded()) {
-            try {
-                HashSet<String> cartSet = ((App) getApplication()).getCartSet();
-                BufferedReader br = new BufferedReader(new FileReader(new File(getFilesDir(), "CartItems.txt")));
-                String line;
-
-                while ((line = br.readLine()) != null) {
-                    cartSet.add(line);
-                }
-
-                ((App) getApplication()).setCartLoaded(true);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
 
         FrameLayout container = findViewById(R.id.itemContainer);
         int counter = 0;

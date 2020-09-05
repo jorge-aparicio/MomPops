@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <service android:name=".RemoveCartItemService"/>
         <activity android:name=".ViewCartActivity" />
         <activity android:name=".EditRestaurantMenuActivity" />
         <activity android:name=".ClickedRestaurantActivity" />

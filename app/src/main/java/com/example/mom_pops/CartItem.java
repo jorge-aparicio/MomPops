@@ -15,10 +15,12 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
+
 public class CartItem extends ConstraintLayout {
     private Activity activity;
     private Context context;
-    private View cartItem_xml;
+    public View cartItem_xml;
 
     private TextView item_name_text_view;
     private TextView item_price_text_view;
@@ -26,25 +28,28 @@ public class CartItem extends ConstraintLayout {
     private TextView item_description_text_view;
     private TextView item_restaurant_text_view;
 
-    private String item_name;
-    private String item_price;
-    private String item_description;
-    private String item_calories;
-    private String item_restaurant;
+    private String itemName;
+    private String itemPrice;
+    private String itemDescription;
+    private String itemCal;
+    private String itemRestaurant;
+    private String itemString;
 
     public CartItem(Context con, Activity act, String name, String price, String description, String calories, String restaurant) {
         super(con);
         activity = act;
         context = con;
 
-        item_name = name;
-        item_price = price;
-        item_description = description;
-        item_calories = calories;
-        item_restaurant = restaurant;
+        itemName = name;
+        itemPrice = price;
+        itemDescription = description;
+        itemCal = calories;
+        itemRestaurant = restaurant;
 
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        cartItem_xml = inflater.inflate(R.layout.cart_item, this);
+        itemString = itemName + "~" + itemPrice + "~" + itemDescription + "~" + itemCal + "~" + itemRestaurant;
+
+        LayoutInflater inflater = activity.getLayoutInflater();
+        cartItem_xml = inflater.inflate(R.layout.cart_item, null);
 
         setCartItem(name, price, description, calories, restaurant);
 
@@ -53,7 +58,18 @@ public class CartItem extends ConstraintLayout {
         x_icon.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("here");
+                ((App) activity.getApplication()).getCartSet().remove(itemString);
+                TextView total_textview = activity.findViewById(R.id.viewCartTotal);
+                String[] fields = total_textview.getText().toString().split(" ");
+                double total = Double.parseDouble(fields[2].substring(1));
+                total = total - Double.parseDouble(itemPrice);
+
+                if (total == 0.00) {
+                    total_textview.setText("Cart Total: $0.00");
+                } else {
+                    total_textview.setText("Cart Total: $" + new DecimalFormat("#.##").format(total) + " + tax");
+                }
+
                 ((ViewManager)cartItem_xml.getParent()).removeView(cartItem_xml);
             }
         });
@@ -65,11 +81,11 @@ public class CartItem extends ConstraintLayout {
             public void onClick(View view) {
                 Intent intent = new Intent(activity, Popup.class);
                 intent.putExtra("popupType", "item");
-                intent.putExtra("itemName", item_name);
-                intent.putExtra("itemDescription", item_description);
-                intent.putExtra("itemCal", item_calories);
-                intent.putExtra("itemPrice", "$" + item_price);
-                intent.putExtra("itemRestaurant", item_restaurant);
+                intent.putExtra("itemName", itemName);
+                intent.putExtra("itemDescription", itemDescription);
+                intent.putExtra("itemCal", itemCal);
+                intent.putExtra("itemPrice", "$" + itemPrice);
+                intent.putExtra("itemRestaurant", itemRestaurant);
                 activity.startActivity(intent);
             }
         });
@@ -81,5 +97,9 @@ public class CartItem extends ConstraintLayout {
         ((TextView) cartItem_xml.findViewById(R.id.itemDescription)).setText(description);
         ((TextView) cartItem_xml.findViewById(R.id.itemCalories)).setText(calories);
         ((TextView) cartItem_xml.findViewById(R.id.itemRestaurant)).setText(restaurant);
+    }
+
+    public View getItemXML() {
+        return cartItem_xml;
     }
 }

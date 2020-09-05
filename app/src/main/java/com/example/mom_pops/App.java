@@ -5,21 +5,12 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 
 public class App extends Application {
     // global variables across app
-    private HashSet<String> set = new HashSet<String>();
-    private boolean cartLoaded = false;
-
-    public HashSet<String> getCartSet() {
+    private LinkedHashSet<String> set = new LinkedHashSet<String>();
+    public LinkedHashSet<String> getCartSet() {
         return set;
-    }
-
-    public boolean getCartLoaded() {
-        return cartLoaded;
-    }
-
-    public void setCartLoaded(boolean bool) {
-        cartLoaded = bool;
     }
 }
