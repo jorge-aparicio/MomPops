@@ -13,7 +13,7 @@
 
   <fragment
       android:id="@+id/navigation_favorites"
-      android:name="com.example.mom_pops.ui.dashboard.DashboardFragment"
+      android:name="com.example.mom_pops.ui.favorites.FavoritesFragment"
       android:label="@string/title_dashboard"
       tools:layout="@layout/fragment_dashboard" />
 
