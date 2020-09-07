@@ -7,7 +7,6 @@
     <string name="restaurant"><u> Mom and Pops Best Restaurant Here </u></string>
     <string name="food_type">Food Type </string>
     <string name="price_range">Price Range </string>
-    <string name="rest_address">Restaurant Address </string>
     <string name="phone_number">Phone # </string>
     <string name="delivery">Delivery: Yes </string>
     <string name="pickup">Pickup: Yes </string>
@@ -33,12 +32,16 @@
     <string name="confirmation_text">Confirmation Text</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
-
-
     <string-array name="categories">
         <item> All Categories </item>
         <item> Burritos </item>
         <item> Tacos </item>
         <item> Salads </item>
     </string-array>
+    <string name="spin_the_wheel">Spin the Wheel</string>
+    <string name="restaurant_name">Restaurant Name</string>
+    <string name="address">Address</string>
+    <string name="view_menu">View Menu</string>
+    <string name="miles_away">Miles Away</string>
+    <string name="my_favorites">My Favorites</string>
 </resources>
