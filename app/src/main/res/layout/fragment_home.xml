@@ -30,19 +30,6 @@
         tools:layout_editor_absoluteX="164dp"
         tools:layout_editor_absoluteY="373dp" />
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="goToViewCart"
-        app:layout_constraintTop_toBottomOf="@id/button3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="Button"
-        tools:layout_editor_absoluteX="160dp"
-        tools:layout_editor_absoluteY="165dp" />
-
-
     <TextView
         android:id="@+id/text_home"
         android:layout_width="match_parent"

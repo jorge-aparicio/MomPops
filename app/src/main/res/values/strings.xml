@@ -28,6 +28,8 @@
     <string name="clear_cart">Clear Cart</string>
     <string name="save_cart">Save Cart</string>
     <string name="view_carts">View Carts</string>
+    <string name="cart">Cart</string>
+    <string name="favorites">Favorites</string>
     <string name="confirmation_text">Confirmation Text</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
