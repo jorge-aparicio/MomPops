@@ -3,21 +3,14 @@ package com.example.mom_pops;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.TypedArray;
-import android.graphics.Color;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 
 
@@ -73,14 +66,13 @@ public class MenuItem extends ConstraintLayout {
                 boolean isSelected = getStarBoolean();
                 if (isSelected) {
                     starIcon.setImageResource(R.mipmap.unselected_star);
-                    Toast.makeText(context, "Removing item from favorites...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Item added to favorites.", Toast.LENGTH_SHORT).show();
                 } else {
                     starIcon.setImageResource(R.mipmap.selected_star);
-                    Toast.makeText(context, "Adding item to favorites...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Item removed from favorites.", Toast.LENGTH_SHORT).show();
                 }
 
                 setStarBoolean(!isSelected);
-                Toast.makeText(context, "Success!", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -97,14 +89,11 @@ public class MenuItem extends ConstraintLayout {
                 if (isSelected) {
                     cartSet.remove(itemString);
                     cartIcon.setImageResource(R.mipmap.unselected_cart);
-                    System.out.println("here");
-                    Intent intent = new Intent(activity, RemoveCartItemService.class);
-                    activity.startService(intent);
-                    Toast.makeText(context, "Removing item from cart...", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Item removed from cart.", Toast.LENGTH_SHORT).show();
                 } else {
                     cartIcon.setImageResource(R.mipmap.selected_cart);
                     ((App) activity.getApplication()).getCartSet().add(itemString);
-                    Toast.makeText(context, "Success!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Item added to cart.", Toast.LENGTH_SHORT).show();
                 }
 
                 setCartBoolean(!isSelected);

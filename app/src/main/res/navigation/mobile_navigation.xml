@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.mom_pops.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
+        android:name="com.example.mom_pops.ui.viewCart.ViewCartFragment"
+        android:label="@string/view_carts"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

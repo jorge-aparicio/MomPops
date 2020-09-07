@@ -16,11 +16,13 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import org.w3c.dom.Text;
 
 import java.text.DecimalFormat;
+import java.util.zip.Inflater;
 
 public class CartItem extends ConstraintLayout {
-    private Activity activity;
+    private LayoutInflater inflater;
     private Context context;
     public View cartItem_xml;
+    private View parent;
 
     private TextView item_name_text_view;
     private TextView item_price_text_view;
@@ -35,10 +37,11 @@ public class CartItem extends ConstraintLayout {
     private String itemRestaurant;
     private String itemString;
 
-    public CartItem(Context con, Activity act, String name, String price, String description, String calories, String restaurant) {
+    public CartItem(Context con, LayoutInflater inflate, View par, String name, String price, String description, String calories, String restaurant) {
         super(con);
-        activity = act;
+        inflater = inflate;
         context = con;
+        parent = par;
 
         itemName = name;
         itemPrice = price;
@@ -48,7 +51,6 @@ public class CartItem extends ConstraintLayout {
 
         itemString = itemName + "~" + itemPrice + "~" + itemDescription + "~" + itemCal + "~" + itemRestaurant;
 
-        LayoutInflater inflater = activity.getLayoutInflater();
         cartItem_xml = inflater.inflate(R.layout.cart_item, null);
 
         setCartItem(name, price, description, calories, restaurant);
@@ -58,8 +60,8 @@ public class CartItem extends ConstraintLayout {
         x_icon.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((App) activity.getApplication()).getCartSet().remove(itemString);
-                TextView total_textview = activity.findViewById(R.id.viewCartTotal);
+                App.getCartSet().remove(itemString);
+                TextView total_textview = parent.findViewById(R.id.viewCartTotal);
                 String[] fields = total_textview.getText().toString().split(" ");
                 double total = Double.parseDouble(fields[2].substring(1));
                 total = total - Double.parseDouble(itemPrice);
@@ -79,14 +81,14 @@ public class CartItem extends ConstraintLayout {
         topLayout.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity, Popup.class);
+                Intent intent = new Intent(context, Popup.class);
                 intent.putExtra("popupType", "item");
                 intent.putExtra("itemName", itemName);
                 intent.putExtra("itemDescription", itemDescription);
                 intent.putExtra("itemCal", itemCal);
                 intent.putExtra("itemPrice", "$" + itemPrice);
                 intent.putExtra("itemRestaurant", itemRestaurant);
-                activity.startActivity(intent);
+                context.startActivity(intent);
             }
         });
     }

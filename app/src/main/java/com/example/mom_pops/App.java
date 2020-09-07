@@ -9,8 +9,8 @@ import java.util.LinkedHashSet;
 
 public class App extends Application {
     // global variables across app
-    private LinkedHashSet<String> set = new LinkedHashSet<String>();
-    public LinkedHashSet<String> getCartSet() {
+    private static LinkedHashSet<String> set = new LinkedHashSet<String>();
+    public static LinkedHashSet<String> getCartSet() {
         return set;
     }
 }
