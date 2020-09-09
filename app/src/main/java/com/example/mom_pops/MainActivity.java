@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
+        /*
         mDBHelper = new DatabaseHelper(this);
 
         try {
@@ -89,23 +90,12 @@ public class MainActivity extends AppCompatActivity {
 
         addRestaurantData();
 
-        //navigate from home page to spin the wheel page
-        spin_the_wheel_button = (Button) findViewById(R.id.btn_spin_the_wheel);
-        spin_the_wheel_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                open_spin_the_wheel();
-            }
-        });
+         */
+
+
     }
 
-    /**
-     * Opens spin the wheel page
-     */
-    public void open_spin_the_wheel() {
-        Intent intent = new Intent(this, MyFavorites.class);
-        startActivity(intent);
-    }
+
 
     /**
      * Adds data to restaurant list views

@@ -3,58 +3,23 @@ package com.example.mom_pops;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.MutableContextWrapper;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-
+// TODO: show the clicked restaurant's data instead aka add database functionality
 public class ClickedRestaurantActivity extends AppCompatActivity {
-    public boolean active;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        active = true;
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
         setContentView(R.layout.activity_clicked_restaurant);
 
-        FrameLayout container = findViewById(R.id.itemContainer);
+        // adds menu items to clicked restaurant page
+        LinearLayout container = findViewById(R.id.itemContainer);
         int counter = 0;
-        int height = 0;
         while (counter < 100) {
             MenuItem item = new MenuItem(getApplicationContext(), this, "Cheeseburger " + counter, "3.99", "This is your basic Cheeseburger.", "1000 Calories", "Mom and Pops Best Restaurant");
-            item.setPadding(height);
-            container.addView(item);
-            height += 600;
-            counter++;
+            container.addView(item, counter++);
         }
-    }
-
-    public boolean getActive() {
-        return active;
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == 1)
-            System.out.println("here");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        active = true;
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        active = false;
     }
 }

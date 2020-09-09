@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="1000dp">
+    android:layout_height="180dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topLayout"
         android:layout_width="365dp"
         android:layout_height="162dp"
         android:layout_marginTop="28dp"
+        android:layout_marginBottom="28dp"
         android:background="#4444"
 
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +49,7 @@
             android:src="@drawable/ic_action_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/textView4"
+            app:layout_constraintStart_toEndOf="@+id/itemDescription"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView

@@ -10,7 +10,17 @@ import java.util.LinkedHashSet;
 public class App extends Application {
     // global variables across app
     private static LinkedHashSet<String> set = new LinkedHashSet<String>();
+    private static boolean popupDisplaying = false;
+
     public static LinkedHashSet<String> getCartSet() {
         return set;
+    }
+
+    public static boolean getPopupStatus() {
+        return popupDisplaying;
+    }
+
+    public static void setPopupStatus(boolean status) {
+        popupDisplaying = status;
     }
 }

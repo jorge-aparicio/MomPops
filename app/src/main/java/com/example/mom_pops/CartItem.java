@@ -1,61 +1,41 @@
 package com.example.mom_pops;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.TypedArray;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewManager;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.constraintlayout.widget.ConstraintLayout;
-
-import org.w3c.dom.Text;
-
 import java.text.DecimalFormat;
-import java.util.zip.Inflater;
 
+//TODO: update cart item to have a favorite icon, share to friend functionality
 public class CartItem extends ConstraintLayout {
     private LayoutInflater inflater;
     private Context context;
     public View cartItem_xml;
     private View parent;
 
-    private TextView item_name_text_view;
-    private TextView item_price_text_view;
-    private TextView item_calories_text_view;
-    private TextView item_description_text_view;
-    private TextView item_restaurant_text_view;
+    // holds values of textview fields in cart item
+    private String itemName, itemPrice, itemDescription, itemCal, itemRestaurant, itemString;
 
-    private String itemName;
-    private String itemPrice;
-    private String itemDescription;
-    private String itemCal;
-    private String itemRestaurant;
-    private String itemString;
-
-    public CartItem(Context con, LayoutInflater inflate, View par, String name, String price, String description, String calories, String restaurant) {
-        super(con);
+    public CartItem(Context itemContext, LayoutInflater inflate, View itemParent, String name, String price, String description, String calories, String restaurant) {
+        super(itemContext);
         inflater = inflate;
-        context = con;
-        parent = par;
+        context = itemContext;
+        parent = itemParent;
 
-        itemName = name;
-        itemPrice = price;
-        itemDescription = description;
-        itemCal = calories;
-        itemRestaurant = restaurant;
-
-        itemString = itemName + "~" + itemPrice + "~" + itemDescription + "~" + itemCal + "~" + itemRestaurant;
-
+        // getting xml of cart item
         cartItem_xml = inflater.inflate(R.layout.cart_item, null);
 
+        // sets all cart item fields
         setCartItem(name, price, description, calories, restaurant);
 
-        // onClick listener for x icon deletes cart item
+        /*
+         onClick listener for x icon deletes cart item
+         behavior: removes the cart item entirely from the users cart
+        */
         ImageView x_icon = cartItem_xml.findViewById(R.id.x_icon);
         x_icon.setOnClickListener(new OnClickListener() {
             @Override
@@ -76,7 +56,9 @@ public class CartItem extends ConstraintLayout {
             }
         });
 
-        // onClick listener for cart item, displays popup with enlarged/expanded information
+        /*
+            onClick listener for cart item, displays popup with enlarged/expanded information
+         */
         ConstraintLayout topLayout = cartItem_xml.findViewById(R.id.topLayout);
         topLayout.setOnClickListener(new OnClickListener() {
             @Override
@@ -93,7 +75,18 @@ public class CartItem extends ConstraintLayout {
         });
     }
 
+    /*
+
+     */
     public void setCartItem(String name, String price, String description, String calories, String restaurant) {
+        itemName = name;
+        itemPrice = price;
+        itemDescription = description;
+        itemCal = calories;
+        itemRestaurant = restaurant;
+
+        itemString = itemName + "~" + itemPrice + "~" + itemDescription + "~" + itemCal + "~" + itemRestaurant;
+
         ((TextView) cartItem_xml.findViewById(R.id.itemName)).setText(name);
         ((TextView) cartItem_xml.findViewById(R.id.itemPrice)).setText("$" + price);
         ((TextView) cartItem_xml.findViewById(R.id.itemDescription)).setText(description);

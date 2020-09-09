@@ -25,16 +25,23 @@ import com.example.mom_pops.R;
 import java.text.DecimalFormat;
 import java.util.HashSet;
 
+// TODO: add support and create activity for view carts, save cart functionality
 public class ViewCartFragment extends Fragment {
+    // contains total price of cart items
     double total_price;
+
+    // refers to the whole cart page's xml
     View root;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        // getting the view cart page's xml
         root = inflater.inflate(R.layout.activity_view_cart, container, false);
+
+        // layout in the view cart page where the cart items will be placed
         LinearLayout layout = root.findViewById(R.id.cartFrame);
 
-        // placing cart items onto cart
+        // placing cart items onto layout
         HashSet<String> items = App.getCartSet();
         int index = 0;
         for (String item : items) {
@@ -48,7 +55,10 @@ public class ViewCartFragment extends Fragment {
         if (total_price != 0)
             ((TextView) root.findViewById(R.id.viewCartTotal)).setText("Cart Total: $" + new DecimalFormat("#.##").format(total_price) + " + tax");
 
-        // assigning on click listener to clear cart button
+        /*
+            assigning on click listener to clear cart button
+            behavior: displays confirmation popup to user only if the cart isn't empty
+         */
         Button clearCart = root.findViewById(R.id.clearCart);
         clearCart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,10 +77,16 @@ public class ViewCartFragment extends Fragment {
             }
         });
 
-
+        // return cart page xml
         return root;
     }
 
+    /*
+        Function gets called after coming back from an activity that was started on this fragment.
+        As of right now, it's only used to determine whether the user wants to delete their cart based off of
+        what they selected in the confirmation popup.
+        behavior: nothing if the user cancels, deletes cart items entirely if user confirms
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (data == null)
