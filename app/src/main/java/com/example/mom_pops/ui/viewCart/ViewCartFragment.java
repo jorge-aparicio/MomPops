@@ -75,9 +75,6 @@ public class ViewCartFragment extends Fragment {
                     return;
                 }
 
-                // setting popupDisplaying to true so the user can't spam multiple popups
-                ((App) getActivity().getApplication()).setPopupDisplaying(true);
-
                 // creates popup asking for confirmation
                 Intent intent = new Intent(getActivity(), Popup.class);
                 intent.putExtra("popupType", "confirmation");
@@ -98,9 +95,6 @@ public class ViewCartFragment extends Fragment {
      */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // reverts popupDisplaying status back to false
-        ((App) getActivity().getApplication()).setPopupDisplaying(false);
-
         // user left the popup by clicking outside of it instead of pressing cancel
         if (data == null)
             return;

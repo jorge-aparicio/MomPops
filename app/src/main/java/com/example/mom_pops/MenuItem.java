@@ -157,9 +157,6 @@ public class MenuItem extends ConstraintLayout {
                 if (((App) activity.getApplication()).getPopupDisplaying())
                     return;
 
-                // won't allow users to spam the popup
-                ((App) activity.getApplication()).setPopupDisplaying(true);
-
                 Intent intent = new Intent(activity, Popup.class);
                 intent.putExtra("popupType", "item");
                 intent.putExtra("itemName", itemName);

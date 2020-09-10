@@ -22,6 +22,9 @@ public class Popup extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // won't allow users to spam the popup
+        ((App) getApplication()).setPopupDisplaying(true);
+
         // adjusting size of activity
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
