@@ -22,7 +22,7 @@ import com.example.mom_pops.R;
 import java.text.DecimalFormat;
 import java.util.HashSet;
 
-// TODO: add support and create activity for view carts, save cart functionality
+// TODO: add save cart and view cart functionality
 public class ViewCartFragment extends Fragment {
     // contains total price of cart items
     double total_price;
