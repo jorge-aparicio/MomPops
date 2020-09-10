@@ -1,24 +1,21 @@
 package com.example.mom_pops.ui.viewCart;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Space;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.mom_pops.App;
-import com.example.mom_pops.Cart;
-import com.example.mom_pops.CartItem;
+import com.example.mom_pops.MenuItem;
 import com.example.mom_pops.Popup;
 import com.example.mom_pops.R;
 
@@ -46,10 +43,15 @@ public class ViewCartFragment extends Fragment {
         int index = 0;
         for (String item : items) {
             String[] fields = item.split("~");
-            CartItem cartItem = new CartItem(getActivity(), inflater, root, fields[0], fields[1], fields[2], fields[3], fields[4]);
-            layout.addView(cartItem.cartItem_xml, index++);
+            MenuItem menuItem = new MenuItem(getActivity(), fields[0], fields[1], fields[2], fields[3], fields[4], true);
+            layout.addView(menuItem, index++);
             total_price += Double.parseDouble(fields[1]);
         }
+
+        // add whitespace at the bottom of the linear layout
+        Space space = new Space(getActivity().getApplicationContext());
+        space.setMinimumHeight(30);
+        layout.addView(space);
 
         // updates cart total textview
         if (total_price != 0)
@@ -63,11 +65,18 @@ public class ViewCartFragment extends Fragment {
         clearCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // do nothing if a popup is already displaying
+                if (((App) getActivity().getApplication()).getPopupDisplaying())
+                    return;
+
                 LinearLayout cartContainer = root.findViewById(R.id.cartFrame);
                 if (cartContainer.getChildCount() == 0) {
                     Toast.makeText(getActivity().getApplicationContext(), "Cart is already empty.", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
+                // setting popupDisplaying to true so the user can't spam multiple popups
+                ((App) getActivity().getApplication()).setPopupDisplaying(true);
 
                 // creates popup asking for confirmation
                 Intent intent = new Intent(getActivity(), Popup.class);
@@ -89,6 +98,10 @@ public class ViewCartFragment extends Fragment {
      */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // reverts popupDisplaying status back to false
+        ((App) getActivity().getApplication()).setPopupDisplaying(false);
+
+        // user left the popup by clicking outside of it instead of pressing cancel
         if (data == null)
             return;
 

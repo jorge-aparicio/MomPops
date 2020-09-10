@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.concurrent.TimeUnit;
+
 //TODO: better styling for the popups, add image support
 public class Popup extends Activity {
     private String itemName, itemCal, itemPrice, itemDescription, itemRestaurant;
@@ -68,7 +70,7 @@ public class Popup extends Activity {
                         setResult(1, res);
 
                         // reverts popupDisplaying status back to false
-                        ((App) getApplication()).setPopupStatus(false);
+                        ((App) getApplication()).setPopupDisplaying(false);
 
                         // close popup
                         finish();
@@ -100,9 +102,6 @@ public class Popup extends Activity {
                         res.putExtra("result", false);
                         setResult(1, res);
 
-                        // reverts popupDisplaying status back to false
-                        ((App) getApplication()).setPopupStatus(false);
-
                         finish();
                     }
                 });
@@ -122,8 +121,16 @@ public class Popup extends Activity {
                     }
                 });
         }
+    }
 
+    /*
+        will update the app that there's no popup being displayed
+     */
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
 
-
+        // denotes that a popup isn't being displayed anymore
+        ((App) getApplication()).setPopupDisplaying(false);
     }
 }

@@ -16,11 +16,11 @@ public class App extends Application {
         return set;
     }
 
-    public static boolean getPopupStatus() {
+    public static boolean getPopupDisplaying() {
         return popupDisplaying;
     }
 
-    public static void setPopupStatus(boolean status) {
+    public static void setPopupDisplaying(boolean status) {
         popupDisplaying = status;
     }
 }

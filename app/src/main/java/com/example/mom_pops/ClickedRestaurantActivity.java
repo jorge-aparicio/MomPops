@@ -18,7 +18,7 @@ public class ClickedRestaurantActivity extends AppCompatActivity {
         LinearLayout container = findViewById(R.id.itemContainer);
         int counter = 0;
         while (counter < 100) {
-            MenuItem item = new MenuItem(getApplicationContext(), this, "Cheeseburger " + counter, "3.99", "This is your basic Cheeseburger.", "1000 Calories", "Mom and Pops Best Restaurant");
+            MenuItem item = new MenuItem(this, "Cheeseburger " + counter, "3.99", "This is your basic Cheeseburger.", "1000 Calories", "Mom and Pops Best Restaurant", false);
             container.addView(item, counter++);
         }
     }
