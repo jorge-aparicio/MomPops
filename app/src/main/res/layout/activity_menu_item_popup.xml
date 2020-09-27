@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#FFDAB9"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    xmlns:custom="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:id="@+id/itemPic"
+            android:layout_width="249dp"
+            android:layout_height="191dp"
+            android:layout_marginTop="36dp"
+            android:src="@drawable/ic_action_name"
+            custom:layout_constraintEnd_toEndOf="parent"
+            custom:layout_constraintHorizontal_bias="0.427"
+            custom:layout_constraintStart_toStartOf="parent"
+            custom:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/itemName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:text="@string/item_name"
+            android:gravity="center"
+            android:textSize="20sp"
+            custom:layout_constraintEnd_toEndOf="parent"
+            custom:layout_constraintHorizontal_bias="0.498"
+            custom:layout_constraintTop_toBottomOf="@id/itemRestaurant"
+            custom:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/priceCalLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            custom:layout_constraintEnd_toEndOf="parent"
+            custom:layout_constraintHorizontal_bias="1.0"
+            custom:layout_constraintStart_toStartOf="parent"
+            custom:layout_constraintTop_toBottomOf="@id/itemName">
+
+
+            <TextView
+                android:id="@+id/itemPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:text="@string/item_price"
+                android:textSize="15sp"
+                tools:layout_editor_absoluteX="103dp"
+                tools:layout_editor_absoluteY="291dp" />
+
+            <TextView
+                android:id="@+id/itemCalories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="@string/item_calories"
+                android:textSize="15sp"
+                tools:layout_editor_absoluteX="203dp"
+                tools:layout_editor_absoluteY="291dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/itemDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/item_description"
+            android:textSize="15sp"
+            custom:layout_constraintStart_toStartOf="parent"
+            custom:layout_constraintTop_toBottomOf="@id/priceCalLayout" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp"
+            custom:layout_constraintEnd_toEndOf="parent"
+            custom:layout_constraintHorizontal_bias="0.498"
+            custom:layout_constraintStart_toStartOf="parent"
+            custom:layout_constraintTop_toBottomOf="@id/itemDescription">
+
+            <Button
+                android:id="@+id/closeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/close_popup"
+                custom:layout_constraintEnd_toEndOf="parent"
+                custom:layout_constraintStart_toStartOf="parent"
+                custom:layout_constraintTop_toBottomOf="@id/itemDescription" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/itemRestaurant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:paddingRight="12dp"
+            android:paddingLeft="12dp"
+            custom:layout_constraintTop_toBottomOf="@id/itemPic"
+            custom:layout_constraintStart_toStartOf="parent"
+            android:textSize="22sp"
+            android:gravity="center"
+            android:text="@string/item_restaurant"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="290dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="menuItem">
+        <attr name="item_name" format="string" />
+        <attr name="item_price" format="string" />
+        <attr name="item_category" format="string" />
+        <attr name="item_description" format="string" />
+        <attr name="item_calories" format="string" />
+        <attr name="item_restaurant" format="string" />
+    </declare-styleable>
+</resources>

@@ -3,12 +3,44 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="navbar">Navbar</string>
+    <string name="restaurant"><u> Mom and Pops Best Restaurant Here </u></string>
+    <string name="food_type">Food Type </string>
+    <string name="price_range">Price Range </string>
+    <string name="phone_number">Phone # </string>
+    <string name="delivery">Delivery: Yes </string>
+    <string name="pickup">Pickup: Yes </string>
+    <string name="images">Images</string>
+    <string name="view_images">View More</string>
+    <string name="menu">Menu</string>
+    <string name="cart_title">View Cart</string>
+    <string name="item_name">Item Name</string>
+    <string name="item_price">Item Price</string>
+    <string name="item_description">This is the description of the item.</string>
+    <string name="item_category"> Item Category</string>
+    <string name="item_calories"> Item Calories</string>
+    <string name="item_restaurant">Item Restaurant</string>
+    <string name="view_description">View Description</string>
+    <string name="hide_description">Hide Description</string>
+    <string name="close_popup">Close</string>
+    <string name="cart_total">Cart Total: $0.00</string>
+    <string name="clear_cart">Clear Cart</string>
+    <string name="save_cart">Save Cart</string>
+    <string name="view_carts">View Carts</string>
+    <string name="cart">Cart</string>
+    <string name="favorites">Favorites</string>
+    <string name="confirmation_text">Confirmation Text</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string-array name="categories">
+        <item> All Categories </item>
+        <item> Burritos </item>
+        <item> Tacos </item>
+        <item> Salads </item>
+    </string-array>
     <string name="spin_the_wheel">Spin the Wheel</string>
     <string name="restaurant_name">Restaurant Name</string>
-    <string name="food_type">Food Type</string>
-    <string name="price_range">Price Range</string>
     <string name="address">Address</string>
-    <string name="phone_number">Phone Number</string>
     <string name="view_menu">View Menu</string>
     <string name="miles_away">Miles Away</string>
     <string name="my_favorites">My Favorites</string>
