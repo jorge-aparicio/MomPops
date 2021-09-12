@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
+        /*
         mDBHelper = new DatabaseHelper(this);
 
         try {
@@ -88,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         recycle_view_restaurants.setAdapter(restaurant_adapter);
 
         addRestaurantData();
+        */
 
     }
 
